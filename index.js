@@ -15,9 +15,12 @@ app.use(express.json());
 
 const server = createServer(app);
 
+
+// server connecting
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000/",
+    // origin: "http://localhost:3000/",
+    origin: "https://talkflow.vercel.app/",
   },
   transports: ["websocket", "polling"],
 });
@@ -69,14 +72,11 @@ server.listen(8002, () => {
   console.log(`Notification server running on port 8002`);
 });
 
-
- 
-
 // / socket.on("like", (data) => {
-  //   console.log(`Like event received: ${JSON.stringify(data)}`);
-  //   const notification = {
-  //     type: "like",
-  //     message: `${data.username} liked your post`,
-  //   };
-  //   socket.broadcast.emit("notification", notification);
-  // });
+//   console.log(`Like event received: ${JSON.stringify(data)}`);
+//   const notification = {
+//     type: "like",
+//     message: `${data.username} liked your post`,
+//   };
+//   socket.broadcast.emit("notification", notification);
+// });
