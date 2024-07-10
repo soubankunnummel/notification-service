@@ -3,6 +3,7 @@ dotenv.config();
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import cron from 'node-cron'
 
 import cors from "cors";
 // import router from "./routes/notificationRout.js";
@@ -68,13 +69,19 @@ app.post("/api/notification/:username", async (req, res) => {
   }
 });
 
+
+cron.schedule('* * * * *', () => {
+  console.log('Running a task every minute');
+});
+
+
 server.listen(8002, () => {
   console.log(`Notification server running on port 8002`);
 });
 
 // / socket.on("like", (data) => {
-//   console.log(`Like event received: ${JSON.stringify(data)}`);
-//   const notification = {
+//   console.log(`Like event received: ${JSON.stringify(data)}`); 
+//   const notification = { 
 //     type: "like",
 //     message: `${data.username} liked your post`,
 //   };
